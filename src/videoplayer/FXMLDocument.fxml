@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="videoplayer.FXMLDocumentController">
+   <children>
+      <MenuBar fx:id="menuBar" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu fx:id="fileMenu" mnemonicParsing="false" text="Media">
+               <items>
+                  <MenuItem fx:id="file" mnemonicParsing="false" text="Open File" />
+                  <MenuItem fx:id="quit" mnemonicParsing="false" text="Quit" />
+               </items>
+            </Menu>
+            <Menu fx:id="Playback" mnemonicParsing="false" text="Playback" />
+            <Menu fx:id="help" mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <VBox alignment="CENTER" layoutY="326.0" prefHeight="60.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="runningTime" text="--:--">
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </HBox.margin></Label>
+                  <Slider fx:id="timeSlider" centerShape="false" maxWidth="1.7976931348623157E308" minWidth="50.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="511.0" HBox.hgrow="ALWAYS">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <effect>
+                        <Glow />
+                     </effect>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </Slider>
+                  <Label fx:id="TotalDuration" text="--:--" />
+               </children>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" fillHeight="false" VBox.vgrow="ALWAYS">
+               <children>
+                  <ToolBar centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="220.0" scaleShape="false" style="-fx-background-color: transparent;">
+                     <items>
+                        <Button fx:id="reload" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#reload" prefHeight="35.0" prefWidth="35.0" style=" -fx-background-color:transparent; -fx-min-height: 28px; -fx-max-height:28px; -fx-min-width:28px; -fx-max-width:28px;" textAlignment="JUSTIFY">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="videoplayer/images/reload.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="back" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="35.0" style=" -fx-min-height: 28px; -fx-max-height:28px; -fx-min-width:28px; -fx-max-width:28px; -fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="videoplayer/images/back.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="playPause" alignment="CENTER" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#playPause" prefHeight="35.0" prefWidth="35.0" style="-fx-min-height: 28px; -fx-max-height: 28px; -fx-min-width: 28px; -fx-max-width: 28px;">
+                           <graphic>
+                              <ImageView preserveRatio="true" style="-fx-background-color: 100%;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Glow level="0.7" />
+                                 </effect>
+                                 <image>
+                                    <Image url="videoplayer/images/play.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="forward" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#forward" prefHeight="35.0" prefWidth="35.0" style=" -fx-background-color:transparent; -fx-min-height: 28px; -fx-max-height:28px; -fx-min-width:28px; -fx-max-width:28px;">
+                           <graphic>
+                              <ImageView fx:id="forwardImage" nodeOrientation="INHERIT" preserveRatio="true">
+                                 <image>
+                                    <Image url="videoplayer/images/forward.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="stop" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#stop" prefHeight="35.0" prefWidth="35.0" style=" -fx-background-color:transparent; -fx-min-height: 28px; -fx-max-height:28px; -fx-min-width:28px; -fx-max-width:28px;">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="videoplayer/images/stop.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </items>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ToolBar>
+                  <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="49.0" prefWidth="242.0" style="-fx-background-color: transparent;" HBox.hgrow="NEVER">
+                     <items>
+                        <Slider fx:id="volumeSlider" blockIncrement="1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="138.0" />
+                        <Button fx:id="sound" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#sound" prefHeight="35.0" prefWidth="35.0" style=" -fx-background-color:transparent; -fx-min-height: 28px; -fx-max-height:28px; -fx-min-width:28px; -fx-max-width:28px;">
+                           <graphic>
+                              <ImageView fx:id="soundBtn">
+                                 <image>
+                                    <Image url="videoplayer/images/sound.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </items>
+                  </ToolBar>
+               </children>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <effect>
+            <InnerShadow height="1.0" radius="0.0" width="0.0" />
+         </effect>
+         <opaqueInsets>
+            <Insets top="3.0" />
+         </opaqueInsets>
+      </VBox>
+      <GridPane fx:id="grid" alignment="CENTER" layoutX="250.0" layoutY="34.0" prefHeight="294.0" prefWidth="600.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MediaView fx:id="mv" fitHeight="300.0" fitWidth="400.0" nodeOrientation="INHERIT" pickOnBounds="true">
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </MediaView>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
